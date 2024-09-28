@@ -35,6 +35,9 @@ func postValue(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintf(w, "Your name gentleman is %s", name)
 	fmt.Fprintf(w, "Your address gentleman is %s", address)
+
+	//fmt.Println(name)
+	//fmt.Println(address)
 }
 
 func main() {
