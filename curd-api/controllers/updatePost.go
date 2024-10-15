@@ -15,7 +15,7 @@ type UpdatedPost struct {
 func UpdatePost(c *gin.Context) {
 
 	var post models.Post
-
+	//good going
 	id := c.Param("id")
 
 	if err := database.DB.Where("id = ?", id).First(&post).Error; err != nil {
