@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /*
 11. Create a program to declare and initialise an array of integers.
@@ -113,7 +115,44 @@ func question18() {
 	fmt.Println(mapmap)
 }
 
+func question19() {
+	mm := make(map[string]int)
+
+	mm["pratyush"] = 11
+
+	fmt.Println(mm)
+
+	var timePass int
+	fmt.Scan(&timePass)
+
+	mm["pratyush"] = timePass
+
+	fmt.Println(mm)
+
+}
+
+func question20() {
+	mm := make(map[int]int)
+
+	mm[1] = 10
+	mm[2] = 11
+	mm[3] = 19
+	mm[4] = 90
+
+	var kk int
+	fmt.Scan(&kk)
+
+	for index, _ := range mm {
+		if index == kk {
+			fmt.Println("Hurrey , we got it bro, we got it")
+			return
+		}
+	}
+
+	fmt.Println("Sorry , we were not able to find the desired thing")
+}
+
 func main() {
 	fmt.Printf("Hello , I am Sword of Morning\n")
-	question18()
+	question20()
 }
