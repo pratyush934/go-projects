@@ -18,6 +18,47 @@ loop.
 30. Implement a program that demonstrates the use of `goto` to jump to a label.
 */
 
+func question21(a int) bool {
+	return a%2 == 0
+}
+
+func question22() {
+	for i := 1; i <= 10; i++ {
+		fmt.Printf("Hey Buddy this is me %d\n", i)
+	}
+
+}
+
+func question23() {
+	for i := 1; i <= 100; i++ {
+		if i%13 == 0 {
+			fmt.Printf("This one is even and you should know it , damn know it %d\n", i)
+		}
+	}
+}
+
+func question24() {
+	a := 10
+
+	switch a {
+	case 1, 2, 3, 4:
+		fmt.Printf("Hey gandu\n")
+	case 10:
+		fmt.Printf("Yahi hai to Sahi hai\n")
+	}
+}
+
+func question25() {
+	var n int
+	fmt.Scanf("Enter the number %d ", &n)
+	var sum int = 0
+	for i := 1; i <= n; i++ {
+		sum = sum + i
+	}
+	fmt.Println(sum)
+}
+
 func main() {
-	fmt.Printf("Hello Buddy")
+	fmt.Printf("Hello Buddy\n")
+	question25()
 }
