@@ -45,6 +45,7 @@ func question24() {
 		fmt.Printf("Hey gandu\n")
 	case 10:
 		fmt.Printf("Yahi hai to Sahi hai\n")
+
 	}
 }
 
