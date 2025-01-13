@@ -59,7 +59,16 @@ func question25() {
 	fmt.Println(sum)
 }
 
+func question26() {
+	for i := 0; i <= 10; i++ {
+		fmt.Printf("hello this is %d\n", i)
+		if i == 9 {
+			break
+		}
+	}
+}
+
 func main() {
 	fmt.Printf("Hello Buddy\n")
-	question25()
+	question26()
 }
