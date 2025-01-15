@@ -12,7 +12,7 @@ multiple conditions.
 25. Write a program that calculates the sum of all numbers up to a given input using a `for`
 loop.
 26. Implement a program that breaks out of a loop when a certain condition is met.
-27. Write a program that uses a labelled `break` statement.
+27. Write a program that uses a laabelled `break` statement.
 28. Implement a program that uses `continue` in a loop to skip even numbers.
 29. Write a program that calculates the sum of digits of a number using a loop.
 30. Implement a program that demonstrates the use of `goto` to jump to a label.
@@ -68,7 +68,61 @@ func question26() {
 	}
 }
 
+func question27() {
+	for i := 0; i <= 10; i++ {
+
+	first:
+		for j := 0; j < 10; j++ {
+			if j == 7 {
+				fmt.Println("It is working dear , it is working", i)
+				break first
+			}
+		}
+	}
+}
+
+func question28() {
+
+	for i := 0; i <= 10; i++ {
+
+		if i%2 == 0 {
+			continue
+		} else {
+			fmt.Printf("I am odd$$$ %d\n", i)
+		}
+	}
+}
+
+func question29() {
+
+	var n int = 1222
+	var sum int = 0
+	for n > 0 {
+		var r int = n % 10
+
+		sum += r
+
+		n /= 10
+	}
+
+	fmt.Printf("sum is %d\n", sum)
+}
+
+func question30() {
+
+	count := 0
+start:
+	fmt.Printf("I am gatokacch\n")
+	count++
+
+	if count < 5 {
+		goto start
+	}
+
+}
+
 func main() {
 	fmt.Printf("Hello Buddy\n")
-	question26()
+	question30()
+
 }
