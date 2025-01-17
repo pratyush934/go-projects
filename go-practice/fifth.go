@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /*
 41. Define a struct called `Person` with fields `name` and `age`.
@@ -21,15 +23,50 @@ type Person struct {
 	age  int
 }
 
+func (p *Person) GetName() string { // question42
+	return *p.name
+}
+
+func (p *Person) SetName(name *string) { //question42
+	p.name = name
+}
+
 func question41() {
 	var name string = "Pratyush"
 	person := Person{&name, 20}
 
-	fmt.Println(person)
+	fmt.Println(*person.name)
+	fmt.Println(person.age)
 
+}
+
+func question43() {
+	var name string
+	name = "Pratyush"
+	person := Person{&name, 10}
+	fmt.Println(person)
+}
+
+type Rectangle struct {
+	length, breadth int
+}
+
+func (r *Rectangle) GetDimension() (int, int) {
+	return r.length, r.breadth
+}
+
+func (r *Rectangle) SetDimension(length, breadth int) {
+	r.length = length
+	r.breadth = breadth
+}
+
+func question44() {
+	rectangle := Rectangle{10, 20}
+
+	fmt.Println(rectangle.length * rectangle.breadth)
 }
 
 func main() {
 	fmt.Printf("I am Pratyush, I am most wonderous in the world\n")
-	question41()
+	question44()
 }
