@@ -66,7 +66,50 @@ func question44() {
 	fmt.Println(rectangle.length * rectangle.breadth)
 }
 
+type GeometricFigures struct {
+	dimension1, dimension2 int
+}
+
+func (g *GeometricFigures) SetDimensions(length, breadth int) {
+	g.dimension1 = length
+	g.dimension2 = breadth
+}
+
+func (g *GeometricFigures) GetDimensions() (int, int) {
+	return g.dimension1, g.dimension2
+}
+
+func (g *GeometricFigures) Area() int {
+	return g.dimension1 * g.dimension2
+}
+
+func question45() {
+	geometricFigure := GeometricFigures{}
+	geometricFigure.SetDimensions(10, 20)
+	area := geometricFigure.Area()
+	fmt.Println("The area exist for the following rectangle is", area)
+}
+
+type Struct1 struct {
+	dimension1, dimension2 int
+}
+
+type Struct2 struct {
+	dimension1, dimension2 int
+}
+
+func (s1 Struct1) Equals(s2 Struct2) bool {
+	return s1.dimension1 == s2.dimension1 && s1.dimension2 == s2.dimension2
+}
+
+func question46() {
+	struct1 := Struct1{10, 20}
+	struct2 := Struct2{dimension1: 10, dimension2: 20}
+
+	fmt.Println(struct1.Equals(struct2))
+}
+
 func main() {
 	fmt.Printf("I am Pratyush, I am most wonderous in the world\n")
-	question44()
+	question46()
 }
