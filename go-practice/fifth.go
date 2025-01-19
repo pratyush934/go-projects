@@ -109,7 +109,57 @@ func question46() {
 	fmt.Println(struct1.Equals(struct2))
 }
 
+type Student struct {
+	name     string
+	systemId string
+	year     int
+}
+
+func (s *Student) SetName(name string) {
+	s.name = name
+}
+
+func (s *Student) GetName() string {
+	return s.name
+}
+
+func (s *Student) SetId(systemId string) {
+	s.systemId = systemId
+}
+
+func (s *Student) GetId() string {
+	return s.systemId
+}
+
+func (s *Student) SetYear(year int) {
+	s.year = year
+}
+
+func (s *Student) GetYear() int {
+	return s.year
+}
+
+func question47() {
+	student1 := Student{"Pratyush", "1223", 2}
+	student2 := Student{"Mridula", "12334", 2}
+	student3 := Student{"Smriti", "345", 3}
+
+	sliceOfStudents := []Student{student1, student2, student3}
+
+	for len(sliceOfStudents) > 0 {
+
+		variableRelatedToStudent := sliceOfStudents[0]
+		sliceOfStudents = sliceOfStudents[1:]
+
+		fmt.Println(variableRelatedToStudent.name)
+		fmt.Println(variableRelatedToStudent.systemId)
+		fmt.Println(variableRelatedToStudent.year)
+
+		fmt.Println("NewStudent begins from here")
+	}
+}
+
 func main() {
 	fmt.Printf("I am Pratyush, I am most wonderous in the world\n")
-	question46()
+	question47()
 }
