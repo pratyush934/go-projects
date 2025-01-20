@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
@@ -159,7 +160,55 @@ func question47() {
 	}
 }
 
+type Papa struct {
+	income int
+}
+
+type Beta struct {
+	p      *Papa
+	income int
+}
+
+func question48() {
+	papa := Papa{10000}
+	beta := Beta{&papa, 0}
+
+	fmt.Println(beta.p.income)
+	fmt.Println(beta.income)
+
+}
+
+type Testing struct {
+	a    int
+	name string
+}
+
+func (t *Testing) constructor(a int, name string) {
+	t.a = a
+	t.name = name
+}
+
+func question49() {
+	test := Testing{}
+	test.constructor(10, "Pratyush")
+
+	fmt.Println(test.a)
+	fmt.Println(test.name)
+}
+
+type Pratyush struct {
+	name string
+	age  int
+}
+
+func question50() {
+	person := Pratyush{"Pratyush", 22}
+	ans, _ := json.Marshal(person)
+
+	fmt.Println(ans)
+}
+
 func main() {
 	fmt.Printf("I am Pratyush, I am most wonderous in the world\n")
-	question47()
+	question50()
 }
