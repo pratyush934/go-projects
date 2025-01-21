@@ -63,10 +63,26 @@ func question55(b *Babu) {
 	b.age = 100
 }
 
+func question56() {
+
+	var a int = 10
+
+	p := &a
+
+	fmt.Println(*p)
+	fmt.Println(p)
+
+	p = nil
+
+	fmt.Println(p)
+
+}
+
+func question57() {
+
+}
+
 func main() {
 	fmt.Println("I am Pratyush, I am good boy")
-	babu := Babu{"Mohini", 20}
-	fmt.Println(babu)
-	question55(&babu)
-	fmt.Println(babu)
+	question56()
 }
