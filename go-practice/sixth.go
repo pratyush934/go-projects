@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"unsafe"
 )
 
 /*
@@ -80,9 +81,67 @@ func question56() {
 
 func question57() {
 
+	a, b, c := 10, 20, 30
+	var pointerSlice []*int = []*int{&a, &b, &c}
+
+	for i, value := range pointerSlice {
+		fmt.Println("The value at ", i, " is ", *value)
+	}
+
+	for _, value := range pointerSlice {
+		*value *= 2
+	}
+
+	for i, value := range pointerSlice {
+		fmt.Println("The value at ", i, " is ", *value)
+	}
+}
+
+type Smriti struct {
+	name string
+	age  int
+	love string
+}
+
+func question58(s *Smriti) {
+	s.name = "Smriti"
+	s.age = 25
+	s.love = "Pratyush"
+}
+
+func question59() {
+
+	//will look into it
+	var num int = 42
+
+	ptr := unsafe.Pointer(&num)
+
+	uintPtr := uintptr(ptr)
+
+	offSetPtr := unsafe.Pointer(uintPtr + 0)
+
+	modifiedValue := (*int)(offSetPtr)
+
+	*modifiedValue = 199
+
+	fmt.Println("Original value ", num)
+	fmt.Println("Modified value is", *modifiedValue)
+}
+
+func question60() {
+	vals := []int{10, 20, 30, 40}
+
+	ptrStart := unsafe.Pointer(&vals[0])
+	itemSize := unsafe.Sizeof(vals[0])
+
+	for i := 0; i < len(vals); i++ {
+		item := *(*int)(unsafe.Add(ptrStart, uintptr(i)*itemSize))
+		println(item)
+	}
 }
 
 func main() {
 	fmt.Println("I am Pratyush, I am good boy")
-	question56()
+	question60()
+
 }
