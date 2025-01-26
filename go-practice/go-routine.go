@@ -67,6 +67,12 @@ func handleConnection(conn net.Conn) {
 	}
 }
 
+func helloWorld() {
+	fmt.Printf("Hello World from Functionk\n")
+}
+
 func main() {
-	networkConnection()
+	go helloWorld()
+	time.Sleep(1000 * time.Millisecond)
+	fmt.Printf("Hello World babu")
 }
