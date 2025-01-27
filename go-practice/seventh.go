@@ -1,6 +1,10 @@
 package main
 
-import "time"
+import (
+	"fmt"
+	"sync"
+	"time"
+)
 
 /*
 61. Write a program that creates a goroutine to print "Hello, Goroutine!".
@@ -23,9 +27,89 @@ func question61() {
 	println("Hello I am Gunda")
 }
 
+func worker(id int, wg *sync.WaitGroup) {
+	defer wg.Done()
+
+	fmt.Println("Good Going It is the first", id)
+
+	time.Sleep(time.Second)
+
+	fmt.Println("Good Back and Back issue is not gone", id)
+
+}
+
+func question62() {
+
+	var wg sync.WaitGroup
+
+	noOfWorkers := 3
+
+	for i := 1; i <= noOfWorkers; i++ {
+		wg.Add(1)
+		go worker(i, &wg)
+	}
+
+	wg.Wait()
+	fmt.Println("Good Going and Not good Going")
+
+}
+
+func producer(ch chan<- int) {
+
+	for i := 0; i < 5; i++ {
+		fmt.Println("Producing :", i)
+		ch <- i
+		time.Sleep(time.Second)
+	}
+	close(ch)
+}
+
+func consumer(ch <-chan int) {
+
+	for item := range ch {
+		fmt.Println("Consuming :", item)
+		time.Sleep(2 * time.Second)
+	}
+}
+
+func question63() {
+
+	ch := make(chan int)
+
+	go producer(ch)
+	go consumer(ch)
+
+	time.Sleep(10 * time.Second)
+}
+
+func producer1(ch chan<- int) {
+
+	for i := 0; i < 5; i++ {
+		fmt.Println("Producing ; ", i)
+		ch <- i
+		time.Sleep(time.Second)
+	}
+	close(ch)
+}
+
+func consumer1(ch <-chan int) {
+
+	for item := range ch {
+		fmt.Println("Consuming : ", item)
+		time.Sleep(2 * time.Second)
+	}
+}
+
+func question64() {
+
+	ch := make(chan int, 5)
+
+	producer1(ch)
+	consumer1(ch)
+
+	time.Sleep(15 * time.Second)
+}
+
 func main() {
-	println("Hello I am Pratyush , I am good boy")
-	time.Sleep(2 * time.Second)
-	go question61()
-	println("Hello I am Don")
+	question64()
 }
