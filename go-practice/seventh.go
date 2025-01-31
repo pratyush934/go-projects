@@ -110,6 +110,33 @@ func question64() {
 	time.Sleep(15 * time.Second)
 }
 
+func question65() {
+
+	ch1 := make(chan string)
+	ch2 := make(chan string)
+
+	go func() {
+		time.Sleep(2 * time.Second)
+		ch1 <- "Hello , This message is Message1 from channel1"
+	}()
+
+	go func() {
+		time.Sleep(1 * time.Second)
+		ch2 <- "Hello, This message is Message2 from channel2"
+	}()
+
+	for i := 0; i < 2; i++ {
+		select {
+		case msg1 := <-ch1:
+
+			fmt.Println(msg1)
+		case msg2 := <-ch2:
+			fmt.Println(msg2)
+		}
+
+	}
+}
+
 func main() {
-	question64()
+	question65()
 }

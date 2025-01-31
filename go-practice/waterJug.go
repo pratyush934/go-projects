@@ -30,9 +30,9 @@ func isVisited(state State, visited map[State]bool) bool {
 }
 
 func WaterJugProblem() {
-	capacity1, capacity2 := 2, 1
+	capacity1, capacity2 := 4, 3
 
-	target := 10
+	target := 2
 
 	initialState := State{0, 0}
 	visited := make(map[State]bool)
