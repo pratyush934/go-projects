@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand/v2"
 	"sync"
 	"time"
 )
@@ -137,6 +138,124 @@ func question65() {
 	}
 }
 
+func sum(arr []int, result chan int) {
+
+	sum := 0
+
+	for _, value := range arr {
+		sum += value
+	}
+	result <- sum
+}
+
+func question67() {
+
+	result := make(chan int)
+
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+	mid := len(arr) / 2
+
+	go sum(arr[:mid], result)
+	go sum(arr[mid:], result)
+
+	sum1 := <-result
+	sum2 := <-result
+
+	fmt.Println(sum1 + sum2)
+
+}
+
+var counter int
+var mutex sync.Mutex
+
+func helperQuestion66(wg *sync.WaitGroup) {
+
+	defer wg.Done()
+	mutex.Lock()
+	counter++
+	mutex.Unlock()
+}
+
+func question66() {
+	var wg sync.WaitGroup
+
+	numberOfRoutines := 10
+
+	wg.Add(numberOfRoutines)
+
+	for i := 0; i < numberOfRoutines; i++ {
+		go helperQuestion66(&wg)
+	}
+
+	wg.Wait()
+
+	fmt.Println(counter)
+}
+
+var once sync.Once
+
+func increment() {
+	fmt.Println("Increment with love")
+}
+
+func question68() {
+
+	var wg sync.WaitGroup
+	for i := 0; i < 3; i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			once.Do(increment)
+		}()
+	}
+	wg.Wait()
+}
+
+func workers(id int, jobs <-chan int, workers chan<- int, wg *sync.WaitGroup) {
+
+	defer wg.Done()
+
+	for job := range jobs {
+		fmt.Println("It is going to be really awesome ", id, "It is not going good ", job)
+		time.Sleep(time.Millisecond * time.Duration(rand.IntN(500)))
+		workers <- job * job
+	}
+}
+
+func question69() {
+
+	numberOfWorkers := 3
+	numberOfJobs := 10
+
+	jobs := make(chan int)
+	results := make(chan int)
+
+	var wg sync.WaitGroup
+
+	for i := 0; i < numberOfWorkers; i++ {
+		wg.Add(1)
+		go workers(i, jobs, results, &wg)
+	}
+
+	for i := 0; i < numberOfJobs; i++ {
+		jobs <- i
+	}
+
+	close(jobs)
+
+	go func() {
+		wg.Wait()
+		close(results)
+	}()
+
+	for value := range results {
+
+		fmt.Println("Good Going but it has value ", value)
+	}
+
+}
+
 func main() {
-	question65()
+	question69()
 }
