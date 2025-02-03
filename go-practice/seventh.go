@@ -233,12 +233,12 @@ func question69() {
 
 	var wg sync.WaitGroup
 
-	for i := 0; i < numberOfWorkers; i++ {
+	for i := 1; i <= numberOfWorkers; i++ {
 		wg.Add(1)
 		go workers(i, jobs, results, &wg)
 	}
 
-	for i := 0; i < numberOfJobs; i++ {
+	for i := 1; i <= numberOfJobs; i++ {
 		jobs <- i
 	}
 
@@ -250,9 +250,11 @@ func question69() {
 	}()
 
 	for value := range results {
-
 		fmt.Println("Good Going but it has value ", value)
 	}
+}
+
+func question70() {
 
 }
 

@@ -1,0 +1,39 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+/*
+71. Write a program that demonstrates basic error handling in Go.
+72. Implement a program that defines a custom error type.
+73. Write a program to demonstrate the use of `panic()` and `recover()`.
+74. Implement a program that uses the `errors` package to create new errors.
+75. Write a program that opens a file and handles errors during file operations.
+76. Implement a program that demonstrates defer statements for cleanup tasks.
+77. Write a program to demonstrate multiple defer statements and their execution order.
+78. Implement a program that imports an external package and uses its functions.
+79. Write a program that demonstrates the use of Go modules to manage dependencies.
+80. Implement a program that handles multiple errors using Go’s `multierror` package.
+*/
+
+func question71(a, b int) (int, error) {
+
+	if b == 0 {
+		return 0, errors.New("not so bad")
+	}
+
+	return a / b, nil
+
+}
+
+func main() {
+	fmt.Println("hello I am Pratyush and I am student")
+
+	ans, err := question71(10, 0)
+	if err != nil {
+		fmt.Println("Error")
+	}
+	fmt.Println(ans)
+}
