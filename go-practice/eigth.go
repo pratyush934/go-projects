@@ -28,12 +28,28 @@ func question71(a, b int) (int, error) {
 
 }
 
+type MyError struct {
+	code    int
+	message string
+}
+
+func question72(a, b int) (int, *MyError) {
+
+	if b == 0 {
+		return 0, &MyError{100, "Kya Dekh raha , Halwa hai kya"}
+	}
+
+	return a / b, nil
+}
+
 func main() {
 	fmt.Println("hello I am Pratyush and I am student")
 
-	ans, err := question71(10, 0)
+	ans, err := question72(10, 2)
 	if err != nil {
 		fmt.Println("Error")
+		fmt.Println(err.code)
+		fmt.Println(err.message)
 	}
 	fmt.Println(ans)
 }
