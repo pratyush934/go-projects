@@ -42,14 +42,35 @@ func question72(a, b int) (int, *MyError) {
 	return a / b, nil
 }
 
-func main() {
-	fmt.Println("hello I am Pratyush and I am student")
+func handlePanic() {
 
-	ans, err := question72(10, 2)
-	if err != nil {
-		fmt.Println("Error")
-		fmt.Println(err.code)
-		fmt.Println(err.message)
+	a := recover()
+	if a != nil {
+		fmt.Println(a)
 	}
-	fmt.Println(ans)
+}
+
+func dividingMyChoice(a, b int) (int, error) {
+
+	defer handlePanic()
+
+	if b == 0 {
+		panic("Haye Diaya Haye Daiya")
+	}
+
+	return a / b, nil
+}
+
+func question73() {
+	choice, err := dividingMyChoice(4, 0)
+
+	if err != nil {
+		fmt.Println("Error hai ", err)
+	}
+
+	fmt.Println(choice)
+}
+
+func main() {
+	question73()
 }
