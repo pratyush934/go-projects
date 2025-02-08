@@ -71,6 +71,10 @@ func question73() {
 	fmt.Println(choice)
 }
 
+func question74() {
+	fmt.Println("Hey Big Brother")
+}
+
 func main() {
 	question73()
 }
