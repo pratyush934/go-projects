@@ -207,8 +207,3 @@ func question50() {
 
 	fmt.Println(ans)
 }
-
-func main() {
-	fmt.Printf("I am Pratyush, I am most wonderous in the world\n")
-	question50()
-}

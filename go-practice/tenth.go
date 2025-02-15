@@ -4,7 +4,11 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"math/rand/v2"
 	"os"
+	"reflect"
+	"sort"
+	"time"
 )
 
 /*
@@ -93,6 +97,54 @@ func question94() {
 
 }
 
+type Details struct {
+	name string
+	age  int
+}
+
+type iD string
+
+func showMe(details, d interface{}) {
+	t1 := reflect.TypeOf(details)
+	k1 := t1.Kind()
+	t2 := reflect.TypeOf(d)
+	k2 := t2.Kind()
+
+	fmt.Println("T1 ", t1)
+	fmt.Println("K1 ", k1)
+	fmt.Println("T2 ", t2)
+	fmt.Println("K2 ", k2)
+
+}
+
+func question96() {
+
+	d := iD("12345k")
+
+	details := Details{"Pratyush", 12}
+
+	showMe(details, d)
+}
+
+func question97() {
+	fmt.Println(time.Now())
+}
+
+func question98() {
+	n := rand.IntN(10)
+	fmt.Println(n)
+}
+
+func question99() {
+	arr := []int{2, 4, 1, 9, 3}
+	sort.Ints(arr)
+	fmt.Println(arr)
+}
+
+func question100() {
+	//look at the main file
+}
+
 func main() {
-	question94()
+	question100()
 }
